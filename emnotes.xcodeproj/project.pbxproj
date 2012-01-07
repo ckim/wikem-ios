@@ -76,6 +76,9 @@
 		CA79249F14B4E7990046A78D /* database.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA79249E14B4E7990046A78D /* database.xml */; };
 		CAB8A6A0149481090086FA90 /* NotesTableViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8A69F149481090086FA90 /* NotesTableViewController2.m */; };
 		CAB8A6A2149485750086FA90 /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8A6A1149485750086FA90 /* 06-magnify.png */; };
+		CAF1B61614B8A70700719EC2 /* IkhoyoDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF1B61014B8A70700719EC2 /* IkhoyoDatabase.m */; };
+		CAF1B61714B8A70700719EC2 /* IkhoyoThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF1B61214B8A70700719EC2 /* IkhoyoThread.m */; };
+		CAF1B61814B8A70700719EC2 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = CAF1B61314B8A70700719EC2 /* sqlite3.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -185,6 +188,14 @@
 		CAB8A69E149481090086FA90 /* NotesTableViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesTableViewController2.h; sourceTree = "<group>"; };
 		CAB8A69F149481090086FA90 /* NotesTableViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesTableViewController2.m; sourceTree = "<group>"; };
 		CAB8A6A1149485750086FA90 /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
+		CAF1B60E14B8A70700719EC2 /* ikhoyo-sqlite-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ikhoyo-sqlite-Prefix.pch"; sourceTree = "<group>"; };
+		CAF1B60F14B8A70700719EC2 /* IkhoyoDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IkhoyoDatabase.h; sourceTree = "<group>"; };
+		CAF1B61014B8A70700719EC2 /* IkhoyoDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IkhoyoDatabase.m; sourceTree = "<group>"; };
+		CAF1B61114B8A70700719EC2 /* IkhoyoThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IkhoyoThread.h; sourceTree = "<group>"; };
+		CAF1B61214B8A70700719EC2 /* IkhoyoThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IkhoyoThread.m; sourceTree = "<group>"; };
+		CAF1B61314B8A70700719EC2 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
+		CAF1B61414B8A70700719EC2 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
+		CAF1B61514B8A70700719EC2 /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +370,7 @@
 		94DA2FE013468F8D00862F48 /* emnotes */ = {
 			isa = PBXGroup;
 			children = (
+				CAF1B60C14B8A6E800719EC2 /* SQLite */,
 				940640BD134CE85E008E4461 /* WikEM */,
 				94EFE5EF134D8A2500B1CBDB /* PersonalNotesView */,
 				940640BC134CE5D5008E4461 /* NoteView */,
@@ -407,6 +419,21 @@
 				94EFE5F2134D8A9900B1CBDB /* PersonalNotesViewController.xib */,
 			);
 			name = PersonalNotesView;
+			sourceTree = "<group>";
+		};
+		CAF1B60C14B8A6E800719EC2 /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				CAF1B60E14B8A70700719EC2 /* ikhoyo-sqlite-Prefix.pch */,
+				CAF1B60F14B8A70700719EC2 /* IkhoyoDatabase.h */,
+				CAF1B61014B8A70700719EC2 /* IkhoyoDatabase.m */,
+				CAF1B61114B8A70700719EC2 /* IkhoyoThread.h */,
+				CAF1B61214B8A70700719EC2 /* IkhoyoThread.m */,
+				CAF1B61314B8A70700719EC2 /* sqlite3.c */,
+				CAF1B61414B8A70700719EC2 /* sqlite3.h */,
+				CAF1B61514B8A70700719EC2 /* sqlite3ext.h */,
+			);
+			name = SQLite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -535,6 +562,9 @@
 				94EFE5F3134D8A9900B1CBDB /* PersonalNotesViewController.m in Sources */,
 				CA1E098414048C220096CBA5 /* VariableStore.m in Sources */,
 				CAB8A6A0149481090086FA90 /* NotesTableViewController2.m in Sources */,
+				CAF1B61614B8A70700719EC2 /* IkhoyoDatabase.m in Sources */,
+				CAF1B61714B8A70700719EC2 /* IkhoyoThread.m in Sources */,
+				CAF1B61814B8A70700719EC2 /* sqlite3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

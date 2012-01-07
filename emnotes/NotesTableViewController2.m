@@ -13,11 +13,15 @@
 #import "CategoryTableViewController.h"
 #import "VariableStore.h"
 
+#import "IkhoyoDatabase.h"
+
+
 @implementation NotesTableViewController2
 
 @synthesize tabBarItem;
 @synthesize isTyping;
 @synthesize managedObjectContext;
+@synthesize db;
  
 - (void)setupTabBarItem
 {
@@ -63,6 +67,7 @@
 
 - (void)dealloc
 {
+    //db is autoreleased..
     [tabBarItem release];
     [super dealloc];
 }
@@ -98,13 +103,54 @@
     
     //  self.searchDisplayController.searchResultsTableView.backgroundColor = [UIColor lightGrayColor];
     //self.imageView.image = [UIImage imageNamed:@"gradientBackground.png"];
+    
+    //load up the sqlite
+	[self loaddb];
+}
+-(void) loaddb{
+    NSFileManager* filemanager = [NSFileManager defaultManager];
+	//get the path of current users documents folder for read/write
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
+	NSString* documentsDir = [paths objectAtIndex:0];
+    
+    /* copy images and files into 'Documents/wikemdocs' for ex. 
+     rather than jsutthe Docs dir, which is shared btw apps
+     in future can gather all files in Dir and create list view for example
+     */
+	//documentsDir = [documentsDir stringByAppendingPathComponent:@"/wikemdocs/"];
+    NSString *dirName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"storage_directory_name"];
+    documentsDir = [documentsDir stringByAppendingPathComponent:dirName];
+    
+    
+   
+	//changing documents allows us to just use the filename and not worry about appending paths
+	[filemanager changeCurrentDirectoryPath: documentsDir];
+    
+    NSString *dbName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"android_db"];
+	NSURL *theURL = [NSURL URLWithString:dbName];
+    NSString *pathAsString = [NSString stringWithContentsOfURL:theURL encoding:NSUTF8StringEncoding error:NULL];
 	
+    [self openDatabase: pathAsString];
+}
+
+
+/* SQLITE implementation 
+  The IkhoyoThread class is used to handle the threading, and can be used standalone. IkhoyoDatabase contains all the methods you’ll need for operating on the database, including opening, querying, updating, and closing the database. Since all operations are executed on a separate thread, most of the methods accept a block as the last parameter. The block gets called on the main thread when the operation completes. Here is an example of opening a database:
+ */
+
+- (void) openDatabase:(NSString*) path {
+	IkhoyoDatabase *db = [[[IkhoyoDatabase alloc] initWithPath:path] autorelease];
+	[db open:^(id dbase) {
+		//dbase contains the opened Ikhoyodb
+	}];
+    NSLog(@"hopefully the IKHOYO db lcass is doing its job");
 }
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     self.tabBarItem = nil;
     self.managedObjectContext = nil;
+    self.db = nil;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style inManagedContext:(NSManagedObjectContext *)context withCategory:(Category *)category
@@ -247,8 +293,18 @@
         self.isTyping = NO;
         self.searchDisplayController.searchResultsTableView.scrollEnabled = YES;
         self.searchDisplayController.searchResultsTableView.separatorColor = [UIColor lightGrayColor];
-        [self.searchDisplayController.searchResultsTableView reloadData];
     
+    
+    //try doing query on sqlite
+//        [self.searchDisplayController.searchResultsTableView reloadData];
+  
+    
+    
+    NSString* searchtext = self.searchDisplayController.searchBar.text;
+ /*   The query method accepts three parameters: the query itself, a class name that will hold the results, and a block that gets executed on the main thread when the query completes. The second parameter (the class name) is the name of a class that we create to hold the results. In this case the class name we use is Socrata. Here is what Socrata looks like:*/
+    
+
+
     
 }
 
