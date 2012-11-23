@@ -64,11 +64,12 @@ p,ol,li,ul,a {font-size: 12pt }
 h2 { font-size: 14pt; border-top:1px solid #DBDEE2; padding-top: 10px; color: darkblue }
 h3 { font-size: 12pt; color: darkgray }
 #toc { width: 100% }
-li {   margin-left: .25em;
+li {   margin-left: .15em;
     padding-left: .1em; }
-li li {  margin-left: .5em; }
-li li li { margin-left: .2em;}
-li li li li {martin-left:.2em;}
+ul{ margin-left: .5em; padding-left:0.2em;}
+ul ul{  margin-left: .2em; }
+ul ul ul { margin-left: .15em;}
+ul ul ul ul {martin-left: .15em;}
 ol {
     list-style: decimal;
     margin-left: .5em;

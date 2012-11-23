@@ -174,9 +174,23 @@
         managedObjectContext = [(emnotesAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]; 
  	}
 	     
-    //get the path of current users Documents folder for read/write
+    //old ->get the path of current users Documents folder for read/write 
+    //updated for ios 5 -> make new dir labeled with properties to avoid icloud backup (or else app rejected )
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
-	NSString* imagePath = [paths objectAtIndex:0];
+//
+    NSString* documentsDir = [paths objectAtIndex:0];
+	
+    NSString *dirName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"storage_directory_name"];
+    NSString* imagePath = [documentsDir stringByAppendingPathComponent:dirName];
+    
+    
+    
+    
+    
+    
+//old directory of images
+/*NSString* imagePath = [paths objectAtIndex:0];
+ */
 	NSURL *testURL = [NSURL fileURLWithPath:imagePath];
  	webView.dataDetectorTypes = UIDataDetectorTypeLink;
 	
